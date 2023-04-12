@@ -5,16 +5,24 @@
       "tittle": "Desenvolvimento de Site",
       "type": "income",
       "category": "Venda",
-      "price": 14000,
-      "createdAt": "2023-04-12T04:16:32.441Z"
+      "price": 5000,
+      "createdAt": "2023-04-12"
     },
     {
       "id": 2,
-      "tittle": "Desenvolvimento de Site",
+      "tittle": "Hamburguer",
       "type": "outcome",
+      "category": "Alimentação",
+      "price": 60,
+      "createdAt": "2023-04-13"
+    },
+    {
+      "id": 3,
+      "tittle": "Landing Page",
+      "type": "income",
       "category": "Venda",
-      "price": 14000,
-      "createdAt": "2023-04-13T04:17:32.441Z"
+      "price": 2500,
+      "createdAt": "2023-04-14"
     }
   ]
 }
