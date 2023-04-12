@@ -11,6 +11,10 @@ import {
   TransactionContext,
   Transactions as TransactionProps,
 } from '../../contexts/TransactionsContext';
+import {
+  dateFormatter,
+  priceFormatter,
+} from '../../utils/formatter';
 
 export const Transactions = () => {
   const { transactions } = useContext(TransactionContext);
@@ -25,20 +29,34 @@ export const Transactions = () => {
 
         <TransactionsTable>
           <tbody>
-            {transactions.map((res: TransactionProps) => {
-              return (
-                <tr key={res.id}>
-                  <td width='50%'>{res.tittle}</td>
-                  <td>
-                    <PriceHighlight variant={res.type}>
-                      {res.price}
-                    </PriceHighlight>
-                  </td>
-                  <td>{res.category}</td>
-                  <td>{res.createdAt}</td>
-                </tr>
-              );
-            })}
+            {transactions.map(
+              (transaction: TransactionProps) => {
+                return (
+                  <tr key={transaction.id}>
+                    <td width='50%'>
+                      {transaction.tittle}
+                    </td>
+                    <td>
+                      <PriceHighlight
+                        variant={transaction.type}
+                      >
+                        {transaction.type === 'outcome' &&
+                          '- '}
+                        {priceFormatter.format(
+                          transaction.price,
+                        )}
+                      </PriceHighlight>
+                    </td>
+                    <td>{transaction.category}</td>
+                    <td>
+                      {dateFormatter.format(
+                        new Date(transaction.createdAt),
+                      )}
+                    </td>
+                  </tr>
+                );
+              },
+            )}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
