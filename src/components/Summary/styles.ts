@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const SummaryContainer = styled.section`
   margin: 0 auto;
@@ -11,10 +11,10 @@ export const SummaryContainer = styled.section`
   gap: 2rem;
 
   margin-top: -5rem;
-`;
+`
 
 interface SummaryCardProps {
-  variant?: 'green';
+  variant?: 'green'
 }
 
 export const SummaryCard = styled.article<SummaryCardProps>`
@@ -41,4 +41,4 @@ export const SummaryCard = styled.article<SummaryCardProps>`
     css`
       background-color: ${props.theme['green-700']};
     `}
-`;
+`
