@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { SearchFormContainer } from './styles'
+import { memo } from 'react'
 
 import { MagnifyingGlass } from 'phosphor-react'
 
@@ -9,13 +10,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TransactionContext } from '../../../contexts/TransactionsContext'
 import { useContextSelector } from 'use-context-selector'
 
+/**
+ * Por que um componente renderiza?
+ */
+
 const searchFormSchema = zod.object({
   query: zod.string(),
 })
 
 type SearchFormInputs = zod.infer<typeof searchFormSchema>
 
-export const SearchForm = () => {
+const SearcFormComponent = () => {
   const fetchTransactions = useContextSelector(
     TransactionContext,
     (context) => {
@@ -48,3 +53,5 @@ export const SearchForm = () => {
     </SearchFormContainer>
   )
 }
+
+export const SearchForm = memo(SearcFormComponent)
