@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
   ArrowCircleDown,
@@ -16,6 +17,7 @@ import {
 import * as zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import { TransactionContext } from '../../contexts/TransactionsContext';
 
 const newTransactionFormSchema = zod.object({
   tittle: zod.string(),
@@ -29,10 +31,15 @@ type NewTransactionFormInputs = zod.infer<
 >;
 
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(
+    TransactionContext,
+  );
+
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema),
@@ -41,11 +48,16 @@ export function NewTransactionModal() {
   async function handleAddNewTransaction(
     data: NewTransactionFormInputs,
   ) {
-    await new Promise((resolve) =>
-      setTimeout(resolve, 2000),
-    );
+    const { tittle, price, category, type } = data;
 
-    console.log(data);
+    await createTransaction({
+      tittle,
+      price,
+      category,
+      type,
+    });
+
+    reset();
   }
 
   return (
